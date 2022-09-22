@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "ansi-colors": "^4.1.3",
+    "dayjs": "^1.11.5",
+    "enquirer": "^2.3.6",
+    "node-fetch": "^3.2.10",
+    "node-fetch-commonjs": "^3.1.1",
+    "request": "^2.88.2"
+  }
+}
