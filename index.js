@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const fs = require('fs')
 const request = require('request');
 const fetch = require('node-fetch-commonjs')
