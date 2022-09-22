@@ -36,6 +36,6 @@
   },
   "homepage": "https://github.com/OdenTakashi/apob#readme",
   "bin": {
-    "apobirthday": "./index.js"
+    "apobirthday": "index.js"
   }
 }
