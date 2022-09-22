@@ -7,7 +7,7 @@
     "node-fetch-commonjs": "^3.1.1",
     "request": "^2.88.2"
   },
-  "name": "apob",
+  "name": "apobirthday",
   "version": "1.0.0",
   "description": "fetch picture taken by NASA on your Birthday",
   "main": "index.js",
