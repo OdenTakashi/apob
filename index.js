@@ -70,9 +70,11 @@ function displayPicture(link) {
           console.log(c.yellow('\n Title:'), c.green(link.title))
 
           const timeStamp = new Date().getTime()
-          fs.writeFileSync(`./picture_data/${timeStamp}.png`, body, 'binary');
+          fs.writeFileSync(`./${timeStamp}.png`, body, 'binary');
 
-          exec(`open ./picture_data/${timeStamp}.png`)
+          exec(`open ./${timeStamp}.png`)
+
+          fs.unlinkSync(`./${timeStamp}.png`)
         }
     }
   )
