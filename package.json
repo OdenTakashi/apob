@@ -9,7 +9,7 @@
     "request": "^2.88.2"
   },
   "name": "apobirthday",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "fetch picture taken by NASA on your Birthday",
   "main": "index.js",
   "scripts": {
@@ -35,7 +35,7 @@
     "url": "https://github.com/OdenTakashi/apob/issues"
   },
   "homepage": "https://github.com/OdenTakashi/apob#readme",
-  "bin":{
+  "bin": {
     "apobirthday": "./index.js"
   }
 }
