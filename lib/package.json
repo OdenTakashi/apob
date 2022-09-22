@@ -6,5 +6,33 @@
     "node-fetch": "^3.2.10",
     "node-fetch-commonjs": "^3.1.1",
     "request": "^2.88.2"
-  }
+  },
+  "name": "apob",
+  "version": "1.0.0",
+  "description": "fetch picture taken by NASA on your Birthday",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OdenTakashi/apob.git"
+  },
+  "keywords": [
+    "fetch",
+    "picture",
+    "taken",
+    "by",
+    "NASA",
+    "on",
+    "your",
+    "Birthday"
+  ],
+  "author": "Oden Takashi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/OdenTakashi/apob/issues"
+  },
+  "homepage": "https://github.com/OdenTakashi/apob#readme"
 }
