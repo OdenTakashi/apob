@@ -39,4 +39,4 @@ This api has access limit.
 
 ## Caution
 🚨 Please note that there is no data before 1965,
-in that case a random date is specified when data before 1965 is entered.
+in that case a random date is specified when data before June 16 1995 is entered.

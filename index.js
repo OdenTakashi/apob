@@ -16,7 +16,7 @@ async function run() {
 
   if (validDate(answers)) {
     const year = answers.split('-')[0]
-    const url = year <= 1965 ? await fetchRandomLink() : await fetchLink(answers)
+    const url = year < 1995 ? await fetchRandomLink() : await fetchLink(answers)
     displayPicture(url)
   } else {
     console.log(c.red('\n 👀 Invalid date \n'),c.yellow('Example: 2000-03-18'))
