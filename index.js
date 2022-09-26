@@ -62,10 +62,8 @@ async function fetchLink(date) {
   return link
 }
 
-function showPicture(content) {
-  const timeStamp = new Date().getTime()
-  fs.writeFileSync(`./picture_data/${timeStamp}.png`, content, 'binary')
-  execSync(`open ./picture_data/${timeStamp}.png`)
+function fetchPicture(content, timestamp) {
+  fs.writeFileSync(`./picture_data/${timestamp}.png`, content, 'binary')
 }
 
 function displayPicture(link) {
@@ -75,12 +73,13 @@ function displayPicture(link) {
       if(!error && response.statusCode === 200){
         console.log(c.yellow('\n Title:'), c.green(link.title))
 
-        if (fs.existsSync('./picture_data')) {
-          showPicture(body)
-        } else {
+        if (!fs.existsSync('./picture_data')) {
           execSync(`mkdir ./picture_data`)
-          showPicture(body)
-        }
+        } 
+
+        const timeStamp = new Date().getTime()
+        fetchPicture(body, timeStamp)
+        execSync(`open ./picture_data/${timeStamp}.png`)
       }
     }
   )
