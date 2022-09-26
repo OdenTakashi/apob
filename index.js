@@ -6,7 +6,7 @@ const fetch = require('node-fetch-commonjs')
 const c = require('ansi-colors')
 const dayjs = require('dayjs')
 const {prompt} = require('enquirer')
-const {exec} = require('child_process')
+const {execSync} = require('child_process')
 
 const token = process.env.APOD_ACCESS_TOKEN || 'DEMO_KEY'
 
@@ -62,7 +62,7 @@ async function fetchLink(date) {
   return link
 }
 
-function displayPicture(link) {
+async function displayPicture(link) {
   request(
     {method: 'GET', url: link.url, encoding: null},
     function (error, response, body){
@@ -70,11 +70,9 @@ function displayPicture(link) {
           console.log(c.yellow('\n Title:'), c.green(link.title))
 
           const timeStamp = new Date().getTime()
-          fs.writeFileSync(`./${timeStamp}.png`, body, 'binary');
-
-          exec(`open ./${timeStamp}.png`)
-
-          fs.unlinkSync(`./${timeStamp}.png`)
+          execSync(`mkdir ./picture_data`)
+          fs.writeFileSync(`./picture_data/${timeStamp}.png`, body, 'binary')
+          execSync(`open ./picture_data/${timeStamp}.png`)
         }
     }
   )
