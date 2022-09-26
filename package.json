@@ -9,7 +9,7 @@
     "request": "^2.88.2"
   },
   "name": "apobirthday",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "fetch picture taken by NASA on your Birthday",
   "main": "index.js",
   "scripts": {

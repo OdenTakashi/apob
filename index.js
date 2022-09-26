@@ -62,18 +62,21 @@ async function fetchLink(date) {
   return link
 }
 
-async function displayPicture(link) {
+function displayPicture(link) {
   request(
     {method: 'GET', url: link.url, encoding: null},
     function (error, response, body){
-        if(!error && response.statusCode === 200){
-          console.log(c.yellow('\n Title:'), c.green(link.title))
+      if(!error && response.statusCode === 200){
+        console.log(c.yellow('\n Title:'), c.green(link.title))
 
-          const timeStamp = new Date().getTime()
+        if (!fs.existsSync('./picture_data')) {
           execSync(`mkdir ./picture_data`)
-          fs.writeFileSync(`./picture_data/${timeStamp}.png`, body, 'binary')
-          execSync(`open ./picture_data/${timeStamp}.png`)
-        }
+        } 
+
+        const timeStamp = new Date().getTime()
+        fs.writeFileSync(`./picture_data/${timeStamp}.png`, body, 'binary')
+        execSync(`open ./picture_data/${timeStamp}.png`)
+      }
     }
   )
 }
