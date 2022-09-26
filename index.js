@@ -62,10 +62,6 @@ async function fetchLink(date) {
   return link
 }
 
-function fetchPicture(content, timestamp) {
-  fs.writeFileSync(`./picture_data/${timestamp}.png`, content, 'binary')
-}
-
 function displayPicture(link) {
   request(
     {method: 'GET', url: link.url, encoding: null},
@@ -78,7 +74,7 @@ function displayPicture(link) {
         } 
 
         const timeStamp = new Date().getTime()
-        fetchPicture(body, timeStamp)
+        fs.writeFileSync(`./picture_data/${timeStamp}.png`, body, 'binary')
         execSync(`open ./picture_data/${timeStamp}.png`)
       }
     }
