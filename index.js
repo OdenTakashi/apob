@@ -70,9 +70,7 @@ function displayPicture(link) {
       if(!error && response.statusCode === 200){
         console.log(c.yellow('\n Title:'), c.green(link.title))
 
-        if (!fs.existsSync('./picture_data')) {
-          execSync(`mkdir ./picture_data`)
-        } 
+        if (!fs.existsSync('./picture_data')) {execSync(`mkdir ./picture_data`)}
 
         const timeStamp = new Date().getTime()
         fs.writeFileSync(`./picture_data/${timeStamp}.png`, body, 'binary')
