@@ -15,8 +15,9 @@ async function run() {
   const answers = await inputBirthday()
 
   if (validDate(answers)) {
-    const year = answers.split('-')[0]
-    const url = year < 1995 ? await fetchRandomLink() : await fetchLink(answers)
+    const inputDate = dayjs(answers)
+    const startDate = dayjs('1995-06-16')
+    const url = inputDate < startDate ? await fetchRandomLink() : await fetchLink(answers)
     displayPicture(url)
   } else {
     console.log(c.red('\n 👀 Invalid date \n'),c.yellow('Example: 2000-03-18'))
