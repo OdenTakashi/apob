@@ -38,4 +38,4 @@ This api has access limit.
 <img width="587" alt="スクリーンショット 2022-09-26 17 16 35" src="https://user-images.githubusercontent.com/81839214/192227280-9c37d8aa-f4df-4bc0-90f1-7d78a4948bbd.png">
 
 ## Caution
-🚨 Please note that there is no data before 1965-08-16,in that case a random date is specified .
+🚨 Please note that there is no data before 1995-08-16,in that case a random date is specified .
