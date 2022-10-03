@@ -38,7 +38,7 @@ async function inputBirthday() {
     }
   ]
 
-  let answers = await prompt(question)
+  const answers = await prompt(question)
   return answers['birthday']
 }
 
