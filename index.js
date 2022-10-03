@@ -4,7 +4,6 @@ const fs = require('fs')
 const request = require('request');
 const fetch = require('node-fetch-commonjs')
 const c = require('ansi-colors')
-const queryString = require('query-string')
 const dayjs = require('dayjs')
 const {prompt} = require('enquirer')
 const {execSync} = require('child_process')
@@ -18,7 +17,7 @@ async function run() {
   if (validDate(answers)) {
     const inputDate = dayjs(answers)
     const startDate = dayjs('1995-06-16')
-    const url = inputDate < startDate ? await fetchRandomLink() : await fetchLink(answers)
+    const url = inputDate < startDate ? await fetchLink() : await fetchLink(specified=`date=${answers}`, ary=false)
     displayPicture(url)
   } else {
     console.log(c.red('\n 👀 Invalid date \n'),c.yellow('Example: 2000-03-18'))
@@ -48,16 +47,10 @@ function validDate(response) {
   return date === response
 }
 
-async function fetchRandomLink() {
-  const response = (await fetch(`https://api.nasa.gov/planetary/apod?api_key=${token}&count=1`)).json()
+async function fetchLink(specified='count=1', ary=true) {
+  const response = (await fetch(`https://api.nasa.gov/planetary/apod?api_key=${token}&${specified}`)).json()
   const link = await response
-  return link[0]
-}
-
-async function fetchLink(date) {
-  const response = (await fetch(`https://api.nasa.gov/planetary/apod?api_key=${token}&date=${date}`)).json()
-  const link  = await response
-  return link
+  return ary ? link[0] : link
 }
 
 function displayPicture(link) {
@@ -77,6 +70,4 @@ function displayPicture(link) {
   )
 }
 
-// run()
-
-console.log(queryString)
+run()
