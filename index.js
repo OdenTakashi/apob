@@ -39,7 +39,7 @@ async function inputBirthday() {
   ]
 
   const answers = await prompt(question)
-  return answers['birthday']
+  return answers.birthday
 }
 
 function validDate(response) {
