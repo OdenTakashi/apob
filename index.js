@@ -4,6 +4,7 @@ const fs = require('fs')
 const request = require('request');
 const fetch = require('node-fetch-commonjs')
 const c = require('ansi-colors')
+const queryString = require('query-string')
 const dayjs = require('dayjs')
 const {prompt} = require('enquirer')
 const {execSync} = require('child_process')
@@ -76,4 +77,6 @@ function displayPicture(link) {
   )
 }
 
-run()
+// run()
+
+console.log(queryString)
