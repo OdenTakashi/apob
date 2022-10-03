@@ -44,11 +44,7 @@ async function inputBirthday() {
 
 function validDate(response) {
   const date = dayjs(response).format("YYYY-MM-DD")
-  if(date == response) {
-    return true
-  } else {
-    return false
-  }
+  return date === response
 }
 
 async function fetchRandomLink() {
