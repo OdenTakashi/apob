@@ -59,7 +59,7 @@ function displayPicture(link) {
     {method: 'GET', url: link.url, encoding: null},
     function (error, response, body){
       if(!error && response.statusCode === 200){
-        console.log(c.yellow('\n Title:'), c.green(link.title))
+        console.log(c.yellow('\n 📚 Title:'), c.green(link.title))
 
         if (!fs.existsSync('./picture_data')) {execSync(`mkdir ./picture_data`)}
 
