@@ -5,6 +5,7 @@ const request = require('request');
 const fetch = require('node-fetch-commonjs')
 const c = require('ansi-colors')
 const dayjs = require('dayjs')
+const minimist = require('minimist')(process.argv.slice(2))
 const {prompt} = require('enquirer')
 const {execSync} = require('child_process')
 
@@ -70,4 +71,8 @@ function displayPicture(link) {
   )
 }
 
-run()
+function destroyPicture() {
+  execSync('rm ./picture_data/*.png')
+}
+
+minimist.d ? destroyPicture() : run()
