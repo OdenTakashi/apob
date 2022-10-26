@@ -71,8 +71,14 @@ function displayPicture(link) {
   )
 }
 
-function destroyPicture() {
-  execSync('rm ./picture_data/*.png')
+function deletePicture() {
+  const pictures = fs.readdirSync('./picture_data')
+  if (pictures.length > 0) {
+    execSync('rm ./picture_data/*.png')
+    console.log(' \n Delete completed 😆')
+  } else {
+    console.log(' \n No files to delete 💦')
+  }
 }
 
-minimist.d ? destroyPicture() : run()
+minimist.d ? deletePicture() : run()
