@@ -62,10 +62,10 @@ function displayPicture(link) {
         console.log(c.yellow('\n 📚 Title:'), c.green(link.title))
 
         if (!fs.existsSync('./picture_data')) {execSync(`mkdir ./picture_data`)}
+        const title = link.title.replaceAll(' ', '_')
 
-        const timeStamp = new Date().getTime()
-        fs.writeFileSync(`./picture_data/${timeStamp}.png`, body, 'binary')
-        execSync(`open ./picture_data/${timeStamp}.png`)
+        fs.writeFileSync(`./picture_data/${title}.png`, body, 'binary')
+        execSync(`open ./picture_data/${title}.png`)
       }
     }
   )
@@ -74,7 +74,7 @@ function displayPicture(link) {
 function deletePicture() {
   const pictures = fs.readdirSync('./picture_data')
   if (pictures.length > 0) {
-    execSync('rm ./picture_data/*.png')
+    execSync('rm ./picture_data/*')
     console.log(' \n Delete completed 😆')
   } else {
     console.log(' \n No files to delete 💦')
@@ -83,7 +83,13 @@ function deletePicture() {
 
 function showPictures() {
   const pictures = fs.readdirSync('./picture_data')
-  pictures.length > 0 ? console.log(pictures) : console.log(' \n No files to show 💦')
+  if (pictures.length > 0) {
+    pictures.forEach(picture => {
+      console.log(c.green(picture))
+    })
+  } else {
+    console.log(' \n No files to show 💦')
+  }
 }
 
 if (minimist.d) {
