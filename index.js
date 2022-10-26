@@ -81,4 +81,15 @@ function deletePicture() {
   }
 }
 
-minimist.d ? deletePicture() : run()
+function showPictures() {
+  const pictures = fs.readdirSync('./picture_data')
+  pictures.length > 0 ? console.log(pictures) : console.log(' \n No files to show 💦')
+}
+
+if (minimist.d) {
+  deletePicture()
+} else if (minimist.l){
+  showPictures()
+} else {
+  run()
+}
