@@ -7,6 +7,7 @@ const c = require('ansi-colors')
 const dayjs = require('dayjs')
 const minimist = require('minimist')(process.argv.slice(2))
 const {prompt} = require('enquirer')
+const {Select} = require('enquirer')
 const {execSync} = require('child_process')
 
 const token = process.env.APOD_ACCESS_TOKEN || 'DEMO_KEY'
@@ -62,10 +63,10 @@ function displayPicture(link) {
         console.log(c.yellow('\n 📚 Title:'), c.green(link.title))
 
         if (!fs.existsSync('./picture_data')) {execSync(`mkdir ./picture_data`)}
+        const title = link.title.replaceAll(' ', '_')
 
-        const timeStamp = new Date().getTime()
-        fs.writeFileSync(`./picture_data/${timeStamp}.png`, body, 'binary')
-        execSync(`open ./picture_data/${timeStamp}.png`)
+        fs.writeFileSync(`./picture_data/${title}.png`, body, 'binary')
+        execSync(`open ./picture_data/${title}.png`)
       }
     }
   )
@@ -74,11 +75,34 @@ function displayPicture(link) {
 function deletePicture() {
   const pictures = fs.readdirSync('./picture_data')
   if (pictures.length > 0) {
-    execSync('rm ./picture_data/*.png')
+    execSync('rm ./picture_data/*')
     console.log(' \n Delete completed 😆')
   } else {
     console.log(' \n No files to delete 💦')
   }
 }
 
-minimist.d ? deletePicture() : run()
+function selectPicture() {
+  const choices = fs.readdirSync('./picture_data')
+  if(choices.length > 0) {
+    const prompt = new Select({
+      message: 'Pick up picture you want to watch 👀',
+      choices
+    })
+    prompt.run()
+      .then(answer => {
+        execSync(`open ./picture_data/${answer}`)
+        console.log(c.green('\n Selected:'), answer)
+      })
+  } else {
+    console.log(' \n No files to show 💦')
+  }
+}
+
+if (minimist.d) {
+  deletePicture()
+} else if (minimist.l){
+  selectPicture()
+} else {
+  run()
+}
